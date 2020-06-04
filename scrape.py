@@ -38,9 +38,11 @@ def member_quotes(name, url, label):
         for block in blocks:
             points = block.xpath('./*[1]/following-sibling::ul[not(preceding-sibling::h2)]')
             for point in points:
-                quotes.extend(point.xpath('./li/text()'))
+                quote_parts = point.xpath('(./li/text() | ./li/*/text())')
+                quote = ''.join(quote_parts)
+                quotes.append(quote)
 
-    quotes = [q.strip('\'"') for q in quotes]    
+    quotes = [q.strip('\'"').strip() for q in quotes]    
     return quotes, name, label
 
 
