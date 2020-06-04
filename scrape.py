@@ -42,7 +42,7 @@ def member_quotes(name, url, label):
                 quote = ''.join(quote_parts)
                 quotes.append(quote)
 
-    quotes = [q.strip('\'"').strip() for q in quotes]    
+    quotes = [q.strip('\'"\n ') for q in quotes]    
     return quotes, name, label
 
 
